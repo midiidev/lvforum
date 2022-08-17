@@ -17,6 +17,10 @@ I can't tell how to deploy because I honestly don't know either.</p>
         <pre><code>php artisan key:generate</code></pre>
     </li>
     <li>
+        Copy the .env.example file and fill it out with the proper values
+        <pre><code>cp .env.example .env</code></pre>
+    </li>
+    <li>
         Setup a database
     </li>
 </ol>
