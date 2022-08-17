@@ -9,20 +9,21 @@ $nav_items = [
 <nav class="p-4 md:px-10 shadow-lg sticky top-0 backdrop-blur">
     <div class="flex text-lg justify-between">
         <div class="space-x-5 my-auto">
-            <a href="/" class="font-bold">{{ env('APP_NAME') }}</a>
             <span x-data="{ show: false }" id="itemList" class="md:hidden">
                 <button class="border border-indigo-600 border-2 rounded px-2" @click="show = !show">
                     <i class="fa-solid fa-bars"></i>
                 </button>
+                <a href="/" class="md:hidden ml-4 font-bold">{{ env('APP_NAME') }}</a>
 
                 <div x-show="show">
                     <ul class="space-y-2 mt-2">
                         @foreach($nav_items as $item)
-                        {!! '<li>' . $item . '</li>' !!}
+                            {!! '<li>' . $item . '</li>' !!}
                         @endforeach
                     </ul>
                 </div>
             </span>
+            <a href="/" class="hidden md:inline font-bold">{{ env('APP_NAME') }}</a>
             <span class="hidden md:inline space-x-5">
                 @foreach($nav_items as $item)
                     {!! $item !!}
@@ -49,7 +50,7 @@ $nav_items = [
                 </div>
             </span>
             @else
-            <span class="hidden md:inline space-x-5">
+            <span class="space-x-5">
                 <a href="/login"><i class="mt-2 fa-solid fa-right-to-bracket"></i> Login</a>
                 <a href="/register" class="mt-2 bg-indigo-600 p-2 rounded"><i class="fa-solid fa-user-plus"></i> Register</a>
             </span>
