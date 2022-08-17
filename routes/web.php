@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SettingsController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
@@ -42,4 +43,9 @@ Route::controller(AuthController::class)->group(function () {
 Route::controller(PostController::class)->group(function () {
     Route::get('create-post', 'create')->middleware('auth');
     Route::post('create-post', 'store')->middleware('auth');
+});
+
+Route::controller(SettingsController::class)->group(function () {
+    Route::get('settings', 'view')->middleware('auth');
+    Route::post('settings/change-password', 'changePassword')->middleware('auth');
 });
