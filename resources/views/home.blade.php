@@ -7,7 +7,9 @@
             <div class="bg-slate-800 active:bg-slate-700 rounded-xl p-5 hover:cursor-pointer">
                 <a href="/posts/{{ $post->id }}">
                     <h2 class="text-2xl font-semibold">{{ $post->title }}</h2>
-                    <p>{{ Str::of($post->body)->limit(300, '...') }}</p>
+                    <p class="text-sm mb-3">by {{ $post->user->username }}</p>
+                    <p>{!! Str::of($post->body)->limit(300, '...')->markdown() !!}</p>
+                    <p class="text-sm mt-3">{{ $post->created_at->diffForHumans() }}</p>
                 </a>
             </div>
         @endforeach

@@ -1,1 +1,2 @@
-<div class="mt-20">b</div>
+{{-- zero width space --}}
+<div class="mt-20">​</div>
