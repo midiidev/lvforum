@@ -7,7 +7,7 @@
         <div class="space-y-5">
             <h1 class="text-4xl">Account Settings</h1>
             <div class="border-b border-b-slate-700"></div>
-            <div class="inline-grid grid-cols-2 gap-2">
+            <div class="md:inline-grid grid-cols-2 gap-2">
                 <div>
                     <h2 class="text-2xl">Change Password</h2>
                     <p>
