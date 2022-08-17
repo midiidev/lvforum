@@ -1,3 +1,5 @@
+<b>THIS IS NOT COMPLETE YET, EXPECT THINGS TO BE MISSING</b>
+
 <h2>LVForum</h2>
 <p>LVForum is a pretty simple forum made with Laravel.</p>
 
