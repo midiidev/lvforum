@@ -39,7 +39,7 @@ $nav_items = [
                         {{ auth()->user()->username }}
                     </button>
 
-                    <div x-show="show" class="fixed bg-slate-800 w-40 rounded-xl" style="transform: translate(-80%)">
+                    <div x-show="show" class="fixed bg-slate-800 w-40 rounded-xl top-16 right-10">
                         <a href="/users/{{ auth()->user()->id }}/profile" class="block hover:bg-slate-700 rounded-xl p-2">Profile</a>
                         <a href="/settings" class="block hover:bg-slate-700 rounded-xl p-2">Settings</a>
                         <form method="POST" action="/logout">
