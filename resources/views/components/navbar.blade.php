@@ -40,11 +40,14 @@ $nav_items = [
                     </button>
 
                     <div x-show="show" class="fixed bg-slate-800 w-40 rounded-xl top-16 right-10">
-                        <a href="/users/{{ auth()->user()->id }}/profile" class="block hover:bg-slate-700 rounded-xl p-2">Profile</a>
-                        <a href="/settings" class="block hover:bg-slate-700 rounded-xl p-2">Settings</a>
+                        <a href="/users/{{ auth()->user()->id }}/profile" class="block hover:bg-slate-700 rounded-xl p-2"><i class="fa-solid fa-user"></i> Profile</a>
+                        <a href="/settings" class="block hover:bg-slate-700 rounded-xl p-2"><i class="fa-solid fa-gears"></i> Settings</a>
+                        @if(auth()->user()->role <= 1)
+                        <a href="/admin/panel" class="block hover:bg-slate-700 rounded-xl p-2"><i class="fa-solid fa-gavel"></i> Admin Panel</a>
+                        @endif
                         <form method="POST" action="/logout">
                             @csrf
-                            <button type="submit" class="w-full text-left hover:bg-slate-700 rounded-xl p-2">Logout</button>
+                            <button type="submit" class="w-full text-left hover:bg-slate-700 rounded-xl p-2"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
                         </form>
                     </div>
                 </div>
