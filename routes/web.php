@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SettingsController;
@@ -58,4 +59,15 @@ Route::controller(PostController::class)->group(function () {
 Route::controller(SettingsController::class)->group(function () {
     Route::get('settings', 'view')->middleware('auth');
     Route::post('settings/change-password', 'changePassword')->middleware('auth');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::middleware(['admin'])->group(function () {
+        Route::get('/panel', function () {
+            return view('admin.panel');
+        });
+
+        Route::post('/change-role', [RolesController::class, 'update']);
+        Route::post('/check-role', [RolesController::class, 'view']);
+    });
 });
