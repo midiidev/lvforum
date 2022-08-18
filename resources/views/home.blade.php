@@ -52,7 +52,7 @@
                         </a>
                     </div>
                 @endforeach
-                @if(\App\Models\Post::count() == 0)
+                @if($posts->count() == 0)
                     <div class="space-y-4 text-slate-500">
                         <h1 class="text-2xl">We're sorry :(</h1>
                         <p>there are no posts yet, but you can change that!</p>
