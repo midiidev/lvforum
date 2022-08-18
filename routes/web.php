@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home', [
-        'posts' => Post::all()->sortByDesc('id'),
+        'posts' => Post::with('category', 'user')->get()->sortByDesc('id'),
         'categories' => Category::all()
     ]);
 });
