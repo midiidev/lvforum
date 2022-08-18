@@ -16,6 +16,11 @@ class RolesController extends Controller
         ]);
 
         $user = User::where('username', request('username'))->first();
+
+        if ($user->role <= auth()->user()->role) {
+            return back()->with('error', 'You cannot change the role of this user.');
+        }
+
         $user->role = request('new_role');
         $user->save();
 
