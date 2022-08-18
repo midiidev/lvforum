@@ -41,7 +41,7 @@
                     @endunless
                 @endforeach
             </div>
-            <div class="col-span-2">
+            <div class="col-span-2 space-y-5">
                 @foreach($posts as $post)
                     <div class="bg-slate-800 hover:bg-slate-700 rounded-xl p-5 hover:cursor-pointer">
                         <a href="/posts/{{ $post->id }}">
