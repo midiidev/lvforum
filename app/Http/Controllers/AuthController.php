@@ -17,7 +17,7 @@ class AuthController extends Controller
     public function register_store()
     {
         $attributes = request()->validate([
-            'username' => 'required|unique:users,username|min:3|max:50',
+            'username' => 'required|alpha_dash|unique:users,username|min:3|max:50',
             'email'    => 'required|email|unique:users,email|max:255',
             'password' => 'required|confirmed|min:8|max:255'
         ]);
