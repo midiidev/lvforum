@@ -26,7 +26,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/posts/{category:slug}', function (Category $category) {
+Route::get('/posts/category/{category:slug}', function (Category $category) {
     return view('home', [
         'posts' => Post::where('category_id', $category->id)->get()->sortByDesc('id'),
         'categories' => Category::all(),
@@ -34,7 +34,7 @@ Route::get('/posts/{category:slug}', function (Category $category) {
     ]);
 });
 
-Route::get('posts/{post}', function (Post $post) {
+Route::get('posts/post/{post}', function (Post $post) {
     return view('posts.post', [
         'post' => $post
     ]);

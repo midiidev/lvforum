@@ -32,7 +32,7 @@
                     {{-- adds hover: rounding differently depending on if the category --}}
                     {{-- is first, last, or neither --}}
                     <div class="hover:bg-slate-700 p-5 hover:cursor-pointer <?php if($loop->last){echo 'hover:rounded-b-xl';} ?>"> {{-- i know this is ugly, but it works --}}
-                        <a href="/posts/{{ $postCategory->slug }}">
+                        <a href="/posts/category/{{ $postCategory->slug }}">
                             <h2 class="text-xl"><i class="{{ $postCategory->icon }}"></i> {{ $postCategory->name }}</h2>
                         </a>
                     </div>
@@ -44,7 +44,7 @@
             <div class="col-span-2 space-y-5 mt-5 md:mt-0">
                 @foreach($posts as $post)
                     <div class="bg-slate-800 hover:bg-slate-700 rounded-xl p-5 hover:cursor-pointer">
-                        <a href="/posts/{{ $post->id }}">
+                        <a href="/posts/post/{{ $post->id }}">
                             <h2 class="text-2xl font-semibold">{{ $post->title }}</h2>
                             <p class="text-sm mb-3">by {{ $post->user->username }}</p>
                             <p>{!! Str::of($post->body)->limit(300, '...')->markdown() !!}</p>
