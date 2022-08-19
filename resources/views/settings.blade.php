@@ -1,7 +1,3 @@
-@php
-    $input = 'bg-slate-700 border border-slate-600 rounded w-full p-2';
-@endphp
-
 <x-app title="Settings">
     <div class="mt-20 max-w-2xl mx-auto space-y-6">
         <div class="space-y-5">
@@ -21,7 +17,7 @@
                             <input name="current_password"
                                    id="current_password"
                                    type="password"
-                                   class="{{ $input }}"
+                                   class="<x-input />"
                                    required>
                             @error('current_password')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -32,7 +28,7 @@
                             <input name="new_password"
                                    id="new_password"
                                    type="password"
-                                   class="{{ $input }}"
+                                   class="<x-input />"
                                    required>
                             @error('new_password')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -43,7 +39,7 @@
                             <input name="new_password_confirmation"
                                    id="new_password_confirmation"
                                    type="password"
-                                   class="{{ $input }}"
+                                   class="<x-input />"
                                    required>
                         </div>
 

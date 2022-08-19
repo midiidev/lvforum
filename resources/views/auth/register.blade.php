@@ -1,7 +1,3 @@
-@php
-    $input = 'bg-slate-700 border border-slate-600 rounded w-full p-2';
-@endphp
-
 <x-app title="Register">
     <h1 class="mt-20 text-3xl text-center">Register</h1>
 
@@ -13,7 +9,7 @@
                        id="username"
                        type="text"
                        value="{{ old('username') }}"
-                       class="{{ $input }}"
+                       class="<x-input />"
                        required>
                 @error('username')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -26,7 +22,7 @@
                        id="email"
                        type="email"
                        value="{{ old('email') }}"
-                       class="{{ $input }}"
+                       class="<x-input />"
                        required>
                 @error('email')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -38,7 +34,7 @@
                 <input name="password"
                        id="password"
                        type="password"
-                       class="{{ $input }}"
+                       class="<x-input />"
                        required>
                 @error('password')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -50,7 +46,7 @@
                 <input name="password_confirmation"
                        id="password_confirmation"
                        type="password"
-                       class="{{ $input }}"
+                       class="<x-input />"
                        required>
             </div>
 

@@ -1,7 +1,3 @@
-@php
-    $input = 'bg-slate-700 border border-slate-600 rounded w-full p-2';
-@endphp
-
 <x-app title="Admin Panel">
     <div class="mt-20 max-w-2xl mx-auto space-y-6">
         <div class="space-y-5">
@@ -23,7 +19,7 @@
                             <input name="username"
                                    id="username"
                                    type="text"
-                                   class="{{ $input }}"
+                                   class="<x-input />"
                                    required>
                             @error('username')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -31,7 +27,7 @@
                         </div>
                         <div>
                             <label for="new_role" class="block font-bold">New Role</label>
-                            <select name="new_role" id="new_role" class="{{ $input }}">
+                            <select name="new_role" id="new_role" class="<x-input />">
                                 <option value="0" disabled>0: Root</option>
                                 @if(auth()->user()->role < 1)
                                     <option value="1">1: Admin</option>
@@ -65,7 +61,7 @@
                             <input name="username"
                                    id="username"
                                    type="text"
-                                   class="{{ $input }}"
+                                   class="<x-input />"
                                    required>
                             @error('username')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
