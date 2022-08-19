@@ -34,7 +34,7 @@ class SettingsController extends Controller
     public function changeIcon()
     {
         request()->validate([
-            'icon'     => 'required|max:1048576'
+            'icon'     => 'max:1048576'
         ]);
 
         $user = auth()->user();

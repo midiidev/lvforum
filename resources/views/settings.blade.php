@@ -17,7 +17,7 @@
                                    id="icon"
                                    type="text"
                                    class="<x-input />"
-                                   required>
+                            >
                             @error('current_password')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
