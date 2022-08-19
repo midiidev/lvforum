@@ -18,7 +18,7 @@
                                    type="text"
                                    class="<x-input />"
                             >
-                            @error('current_password')
+                            @error('icon')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
