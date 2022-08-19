@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SettingsController;
 use App\Models\Category;
@@ -54,6 +55,10 @@ Route::controller(AuthController::class)->group(function () {
 Route::controller(PostController::class)->group(function () {
     Route::get('create-post/category/{category}', 'create')->middleware('auth');
     Route::post('create-post', 'store')->middleware('auth');
+});
+
+Route::controller(CommentController::class)->group(function () {
+    Route::post('posts/post/{post}/comment', 'store')->middleware('auth');
 });
 
 Route::controller(SettingsController::class)->group(function () {

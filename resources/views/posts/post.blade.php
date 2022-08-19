@@ -9,4 +9,42 @@
             {!! Str::of($post->body)->markdown() !!}
         </div>
     </div>
+    <div class="mt-20 max-w-2xl mx-auto">
+        {{-- comment form --}}
+        @auth
+            <div class="md:flex p-5 bg-slate-800 rounded-xl">
+                <div class="md:mr-10 flex-shrink-0">
+                    <x-profile-icon :user="auth()->user()"
+                                    class="rounded-full mx-auto hidden md:inline" />
+                </div>
+                <div>
+                    <form method="POST" action="/posts/post/{{ $post->id }}/comment">
+                        @csrf
+
+                        <label for="comment-body" class="font-semibold">Post a comment</label>
+                        <textarea name="comment-body"
+                                  id="comment-body"
+                                  class="<x-input /> mt-2"
+                                  rows="3"
+                                  required></textarea>
+                        <button type="submit" class="<x-button /> mt-2">Post comment</button>
+                    </form>
+                </div>
+            </div>
+        @else
+            <div class="p-5 bg-slate-800 rounded-xl">
+                <div>
+                    <h3 class="font-semibold text-xl">Want to post a comment?</h3>
+                    <p><a href="/register" class="underline">Create an account</a> or <a href="/login" class="underline">log in</a> to start posting comments.</p>
+                </div>
+            </div>
+        @endauth
+
+        {{-- comments --}}
+        <div class="mt-5 space-y-5">
+            @foreach($post->comments->sortByDesc('id') as $comment)
+                <x-post-comment :comment="$comment" />
+            @endforeach
+        </div>
+    </div>
 </x-app>
