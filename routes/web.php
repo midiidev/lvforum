@@ -64,6 +64,7 @@ Route::controller(CommentController::class)->group(function () {
 Route::controller(SettingsController::class)->group(function () {
     Route::get('settings', 'view')->middleware('auth');
     Route::post('settings/change-password', 'changePassword')->middleware('auth');
+    Route::post('settings/change-icon', 'changeIcon')->middleware('auth');
 });
 
 Route::prefix('admin')->group(function () {

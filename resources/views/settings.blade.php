@@ -5,6 +5,33 @@
             <div class="border-b border-b-slate-700"></div>
             <div class="md:inline-grid grid-cols-2 gap-2">
                 <div>
+                    <h2 class="text-2xl">Change Profile Picture</h2>
+                    <p>
+                        Links and base64 encoded images are supported.
+                    </p>
+                </div>
+                <div>
+                    <form method="POST" action="/settings/change-icon" class="space-y-5">
+                        <div>
+                            <input name="icon"
+                                   id="icon"
+                                   type="text"
+                                   class="<x-input />"
+                                   required>
+                            @error('current_password')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        @csrf
+
+                        <button type="submit" class="<x-button />">Change Icon</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="md:inline-grid grid-cols-2 gap-2">
+                <div>
                     <h2 class="text-2xl">Change Password</h2>
                     <p>
                         You should make your password not obvious and unique. <a href="https://bitwarden.com/" class="underline">Password managers</a> are very useful.

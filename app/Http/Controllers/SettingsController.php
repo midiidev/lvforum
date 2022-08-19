@@ -24,10 +24,23 @@ class SettingsController extends Controller
             return back()->withErrors(['current_password' => 'The password you provided is incorrect.']);
         }
 
-        $user = User::find(1);
+        $user = auth()->user();
         $user->password = request('new_password');
         $user->save();
 
         return back()->with('success', 'Password successfully updated.');
+    }
+
+    public function changeIcon()
+    {
+        request()->validate([
+            'icon'     => 'required|max:1048576'
+        ]);
+
+        $user = auth()->user();
+        $user->icon = request('icon');
+        $user->save();
+
+        return back()->with('success', 'Icon successfully updated.');
     }
 }
