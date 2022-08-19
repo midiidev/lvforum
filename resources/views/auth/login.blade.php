@@ -30,7 +30,7 @@
 
             @csrf
 
-            <button type="submit" class="p-2 bg-indigo-600 hover:bg-indigo-700 rounded">Log In</button>
+            <button type="submit" class="<x-button />">Log In</button>
         </form>
     </div>
 </x-app>

@@ -45,7 +45,7 @@
 
                         @csrf
 
-                        <button type="submit" class="p-2 bg-indigo-600 hover:bg-indigo-700 rounded">Change Password</button>
+                        <button type="submit" class="<x-button />">Change Password</button>
                     </form>
                 </div>
             </div>

@@ -44,7 +44,7 @@
 
                         @csrf
 
-                        <button type="submit" class="p-2 bg-indigo-600 hover:bg-indigo-700 rounded">Change Role</button>
+                        <button type="submit" class="<x-button />">Change Role</button>
                     </form>
                 </div>
                 <div>
@@ -70,7 +70,7 @@
 
                         @csrf
 
-                        <button type="submit" class="p-2 bg-indigo-600 hover:bg-indigo-700 rounded">Check Role</button>
+                        <button type="submit" class="<x-button />">Check Role</button>
                     </form>
                 </div>
             </div>
