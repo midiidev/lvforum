@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class SettingsController extends Controller
 {
@@ -49,7 +50,7 @@ class SettingsController extends Controller
         $file->storeAs('public/avatars', auth()->user()->id . '.' . $extension);
 
         $user = auth()->user();
-        $user->icon = '/storage/avatars/' . auth()->user()->id . '.' . $extension;
+        $user->icon = '/storage/avatars/' . auth()->user()->id . '.' . $extension . '?' . Str::random(5); // random string to prevent caching
         $user->save();
 
         return back()->with('success', 'Icon successfully updated.');
