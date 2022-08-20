@@ -3,30 +3,29 @@
         <div class="space-y-5">
             <h1 class="text-4xl">Account Settings</h1>
             <div class="border-b border-b-slate-700"></div>
-            <div class="md:inline-grid grid-cols-2 gap-2">
+            <div class="md:inline-grid grid-cols-2 gap-2 w-full">
                 <div>
                     <h2 class="text-2xl">Change Profile Picture</h2>
-                    <p>
-                        Links and base64 encoded images are supported.
-                    </p>
+                    <div class="flex flex-col items-left justify-left mt-2">
+                        <form method="POST" action="/settings/change-icon" enctype="multipart/form-data">
+                            <label for="icon" class="flex items-left justify-left">
+                                <span class="<x-button /> cursor-pointer">Choose a file</span>
+                            </label>
+                            <input name="icon" id="icon" type="file" class="hidden">
+                            @csrf
+                            <button type="submit" class="<x-button /> mt-5">Upload</button>
+                        </form>
+                        @error('icon')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
                 <div>
-                    <form method="POST" action="/settings/change-icon" class="space-y-5">
-                        <div>
-                            <input name="icon"
-                                   id="icon"
-                                   type="text"
-                                   class="<x-input />"
-                            >
-                            @error('icon')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        @csrf
-
-                        <button type="submit" class="<x-button />">Change Icon</button>
-                    </form>
+                    <img src="{{ auth()->user()->icon ?? '/images/nopfp.png' }}"
+                         alt="{{ auth()->user()->username }}"
+                         class="rounded-full mx-auto"
+                         width="150"
+                         height="150">
                 </div>
             </div>
 

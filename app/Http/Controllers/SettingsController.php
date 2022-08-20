@@ -34,13 +34,15 @@ class SettingsController extends Controller
     public function changeIcon()
     {
         request()->validate([
-            'icon'     => 'max:1048576'
+            'icon' => 'required|image|mimes:jpeg,jpg,png,gif|max:1024' // 1MB
         ]);
 
-        //todo: make sure that base64 is sent rather than just an image link
+        $file = request()->file('icon');
+        $extension = $file->getClientOriginalExtension();
+        $file->storeAs('public/avatars', auth()->user()->id . '.' . $extension);
 
         $user = auth()->user();
-        $user->icon = request('icon');
+        $user->icon = '/storage/avatars/' . auth()->user()->id . '.' . $extension;
         $user->save();
 
         return back()->with('success', 'Icon successfully updated.');
