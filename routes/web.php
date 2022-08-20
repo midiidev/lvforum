@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
@@ -75,5 +76,7 @@ Route::prefix('admin')->group(function () {
 
         Route::post('/change-role', [RolesController::class, 'update']);
         Route::post('/check-role', [RolesController::class, 'view']);
+
+        Route::post('/change-default-icon', [AdminController::class, 'changeDefaultIcon']);
     });
 });

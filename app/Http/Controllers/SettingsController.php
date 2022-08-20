@@ -34,7 +34,7 @@ class SettingsController extends Controller
     public function changeIcon()
     {
         request()->validate([
-            'icon' => 'required|image|mimes:jpeg,jpg,png,gif|max:1024' // 1MB
+            'icon' => 'image|mimes:jpeg,jpg,png,gif|max:1024' // 1MB
         ]);
 
         $file = request()->file('icon');

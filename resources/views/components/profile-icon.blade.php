@@ -1,5 +1,5 @@
 @props(['user', 'alt', 'class', 'size'])
-<img src="{{ $user->icon ?? '/images/nopfp.png' }}"
+<img src="{{ $user->icon ?? '/storage/avatars/_nopfp.png' }}"
      alt="{{ $alt ?? '' }}"
      class="{{ $class ?? '' }}"
      width="{{ $size ?? '100' }}"

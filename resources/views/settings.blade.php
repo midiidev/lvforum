@@ -21,11 +21,11 @@
                     </div>
                 </div>
                 <div>
-                    <img src="{{ auth()->user()->icon ?? '/images/nopfp.png' }}"
-                         alt="{{ auth()->user()->username }}"
-                         class="rounded-full mx-auto"
-                         width="150"
-                         height="150">
+                    <x-profile-icon :user="auth()->user()"
+                                    alt="{{ auth()->user()->username }}"
+                                    class="rounded-full mx-auto"
+                                    size="150"
+                    />
                 </div>
             </div>
 

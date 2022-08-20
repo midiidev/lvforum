@@ -47,6 +47,7 @@
                         <button type="submit" class="<x-button />">Change Role</button>
                     </form>
                 </div>
+
                 <div>
                     <h2 class="text-2xl">Check Role</h2>
                     <p>Check the role of a user.</p>
@@ -72,6 +73,29 @@
 
                         <button type="submit" class="<x-button />">Check Role</button>
                     </form>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl">Change Default Profile Picture</h2>
+                    <div class="flex flex-col items-left justify-left mt-2">
+                        <form method="POST" action="/admin/change-default-icon" enctype="multipart/form-data">
+                            <label for="icon" class="flex items-left justify-left">
+                                <span class="<x-button /> cursor-pointer">Choose a file</span>
+                            </label>
+                            <input name="icon" id="icon" type="file" class="hidden">
+                            @csrf
+                            <button type="submit" class="<x-button /> mt-5">Upload</button>
+                        </form>
+                        @error('icon')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                <div>
+                    <x-profile-icon alt="default profile picture"
+                                    class="rounded-full mx-auto"
+                                    size="150"
+                    />
                 </div>
             </div>
         </div>
