@@ -20,7 +20,7 @@
                 </p>
             @endif
         @endauth
-        <div class="md:grid grid-cols-3 gap-10">
+        <div class="md:grid grid-cols-4 gap-10">
             <div class="bg-slate-800 rounded-xl hover:cursor-pointer mb-auto row-end-auto">
                 <div class="hover:bg-slate-700 p-5 hover:cursor-pointer hover:rounded-t-xl">
                     <a href="/">
@@ -41,7 +41,7 @@
                     @endunless
                 @endforeach
             </div>
-            <div class="col-span-2 space-y-5 mt-5 md:mt-0">
+            <div class="col-span-3 space-y-5 mt-5 md:mt-0">
                 @foreach($posts as $post)
                     <div class="bg-slate-800 hover:bg-slate-700 rounded-xl p-5 hover:cursor-pointer">
                         <a href="/posts/post/{{ $post->id }}">
