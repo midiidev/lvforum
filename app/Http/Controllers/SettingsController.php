@@ -37,6 +37,8 @@ class SettingsController extends Controller
             'icon'     => 'max:1048576'
         ]);
 
+        //todo: make sure that base64 is sent rather than just an image link
+
         $user = auth()->user();
         $user->icon = request('icon');
         $user->save();
