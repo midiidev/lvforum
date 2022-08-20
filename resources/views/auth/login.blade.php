@@ -4,14 +4,14 @@
     <div class="max-w-xl mx-auto mt-10 border border-slate-700 bg-slate-800 rounded-xl p-5">
         <form method="POST" class="space-y-10 mt-0">
             <div>
-                <label for="username" class="block font-bold">Username</label>
-                <input name="username"
-                       id="username"
-                       type="text"
-                       value="{{ old('username') }}"
+                <label for="email" class="block font-bold">Email</label>
+                <input name="email"
+                       id="email"
+                       type="email"
+                       value="{{ old('email') }}"
                        class="<x-input />"
                        required>
-                @error('username')
+                @error('email')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>

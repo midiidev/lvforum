@@ -33,6 +33,8 @@ Artisan::command('root:create', function () {
     $user->save();
 
     $this->comment('Root user created. Root password is "admin". Please change it immediately.');
+    $this->comment('Root email: root@user.account');
+    $this->comment('Root password: admin');
 })->purpose('Create the root user');
 
 Artisan::command('root:change', function () {

@@ -37,7 +37,7 @@ class AuthController extends Controller
     public function login_store()
     {
         $attributes = request()->validate([
-            'username' => 'required|exists:users,username',
+            'email' => 'required|exists:users,email',
             'password' => 'required'
         ]);
 
