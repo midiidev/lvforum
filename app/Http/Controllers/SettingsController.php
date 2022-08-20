@@ -37,6 +37,10 @@ class SettingsController extends Controller
             'icon' => 'image|mimes:jpeg,jpg,png,gif|max:1024' // 1MB
         ]);
 
+        if (request('icon') == null) {
+            auth()->user()->icon = null;
+        }
+
         $file = request()->file('icon');
         $extension = $file->getClientOriginalExtension();
         $file->storeAs('public/avatars', auth()->user()->id . '.' . $extension);
