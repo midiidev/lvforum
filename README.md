@@ -17,20 +17,28 @@ I can't tell how to deploy because I honestly don't know either.</p>
         <pre><code>composer install && npm install</code></pre>
     </li>
     <li>
+        Copy the .env.example file and fill it out with the proper values
+        <pre><code>cp .env.example .env</code></pre>
+    </li>
+    <li>
         Generate a key for the app
         <pre><code>php artisan key:generate</code></pre>
     </li>
     <li>
-        Setup a database
+        Setup a database (sqlite not good for production because of case sensitivity)
     </li>
     <li>
-        Copy the .env.example file and fill it out with the proper values
-        <pre><code>cp .env.example .env</code></pre>
+        Run the migrations
+        <pre><code>php artisan migrate:fresh</code></pre>
     </li>
     <li>
         Create the root user
         <pre><code>php artisan root:create</code></pre>
         <b>make sure to change the root password with</b> <code>php artisan root:change</code>
+    </li>
+    <li>
+        Link storage to public directory
+        <pre><code>php artisan storage:link</code></pre>
     </li>
     <li>
         Run the server
