@@ -39,6 +39,8 @@ class SettingsController extends Controller
 
         if (request('icon') == null) {
             auth()->user()->icon = null;
+
+            return back()->with('success', 'Icon successfully updated.');
         }
 
         $file = request()->file('icon');
