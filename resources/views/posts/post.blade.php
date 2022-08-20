@@ -28,6 +28,9 @@
                                   rows="3"
                                   required></textarea>
                         <button type="submit" class="<x-button /> mt-2">Post comment</button>
+                        @error('comment-body')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </form>
                 </div>
             </div>

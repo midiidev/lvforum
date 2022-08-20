@@ -21,7 +21,7 @@
             <div>
                 <label for="body" class="block font-bold">Post Body</label>
                 <textarea name="body" id="body" class="<x-input />" rows="10" required></textarea>
-                @error('textarea')
+                @error('body')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
