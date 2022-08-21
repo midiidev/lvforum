@@ -97,6 +97,8 @@
                                     size="150"
                     />
                 </div>
+
+                {{-- todo: add ban section --}}
             </div>
         </div>
     </div>

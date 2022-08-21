@@ -4,6 +4,19 @@
         <h1 class="text-3xl">{{ $post->title }}</h1>
         <p class="text-sm">posted by {{ $post->user->username }}</p>
         <p class="text-sm">{{ $post->created_at->diffForHumans() }}</p>
+        <div class="space-x-3 flex">
+            @if(auth()->check() && auth()->user()->role < 3 || auth()->check() && auth()->user()->id == $post->user_id)
+                <form method="POST" action="/posts/post/{{ $post->id }}/delete">
+                    @csrf
+                    <button>
+                        <i class="fa-solid fa-trash-can"></i> Delete
+                    </button>
+                </form>
+                <a href="/posts/post/{{ $post->id }}/edit">
+                    <i class="fa-solid fa-edit"></i> Edit
+                </a>
+            @endif
+        </div>
         <div class="border-b border-b-slate-700 my-5"></div>
         <div class="prose prose-invert">
             {!! Str::of($post->body)->markdown() !!}

@@ -61,6 +61,11 @@ Route::controller(AuthController::class)->group(function () {
 Route::controller(PostController::class)->group(function () {
     Route::get('create-post/category/{category}', 'create')->middleware('auth');
     Route::post('create-post', 'store')->middleware('auth');
+
+    Route::get('posts/post/{post}/edit', 'edit')->middleware('auth');
+
+    Route::post('posts/post/{post}/delete', 'destroy')->middleware('auth');
+    Route::post('posts/post/{post}/edit', 'update')->middleware('auth');
 });
 
 Route::controller(CommentController::class)->group(function () {
