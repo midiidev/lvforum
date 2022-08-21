@@ -32,6 +32,11 @@ class SettingsController extends Controller
         return back()->with('success', 'Password successfully updated.');
     }
 
+    /**
+     * Change the currently logged-in user's icon/profile picture.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function changeIcon()
     {
         request()->validate([
@@ -47,10 +52,11 @@ class SettingsController extends Controller
 
         $file = request()->file('icon');
         $extension = $file->getClientOriginalExtension();
+        $filehash = crc32($file);
         $file->storeAs('public/avatars', auth()->user()->id . '.' . $extension);
 
         $user = auth()->user();
-        $user->icon = '/storage/avatars/' . auth()->user()->id . '.' . $extension . '?' . Str::random(5); // random string to prevent caching
+        $user->icon = '/storage/avatars/' . auth()->user()->id . '.' . $extension . '?' . $filehash; // Add file hash to prevent caching
         $user->save();
 
         return back()->with('success', 'Icon successfully updated.');
