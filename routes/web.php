@@ -23,14 +23,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home', [
-        'posts' => Post::with('category', 'user')->get()->sortByDesc('id'),
+        'posts' => Post::with('category', 'user', 'comments')
+            ->get()
+            ->sortByDesc('id'),
         'categories' => Category::all()
     ]);
 });
 
 Route::get('/posts/category/{category:slug}', function (Category $category) {
     return view('home', [
-        'posts' => Post::where('category_id', $category->id)->get()->sortByDesc('id'),
+        'posts' => Post::with('user', 'comments')
+            ->where('category_id', $category->id)
+            ->get()
+            ->sortByDesc('id'),
         'categories' => Category::all(),
         'category' => $category
     ]);
