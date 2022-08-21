@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BanController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
@@ -78,6 +79,7 @@ Route::controller(SettingsController::class)->group(function () {
     Route::post('settings/change-icon', 'changeIcon')->middleware('auth');
 });
 
+// admin routes
 Route::prefix('admin')->group(function () {
     Route::middleware(['admin'])->group(function () {
         Route::get('/panel', function () {
@@ -88,5 +90,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/check-role', [RolesController::class, 'view']);
 
         Route::post('/change-default-icon', [AdminController::class, 'changeDefaultIcon']);
+
+        Route::post('/ban-user', [BanController::class, 'store']);
     });
 });

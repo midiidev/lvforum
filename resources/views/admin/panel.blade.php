@@ -98,7 +98,41 @@
                     />
                 </div>
 
-                {{-- todo: add ban section --}}
+                <div>
+                    <h2 class="text-2xl">Ban User</h2>
+                    <p>Ban a user.</p>
+                    <p>You can set a user's ban time to 0 to unban them.</p>
+                </div>
+                <div>
+                    <form method="POST" action="/admin/ban-user" class="space-y-5">
+                        <div>
+                            <label for="username" class="block font-bold">Username</label>
+                            <input name="username"
+                                   id="username"
+                                   type="text"
+                                   class="<x-input />"
+                                   required>
+                            @error('username')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div>
+                            <label for="time" class="block font-bold">Ban time (in days)</label>
+                            <input name="time"
+                                   id="time"
+                                   type="number"
+                                   class="<x-input />"
+                                   required>
+                            @error('time')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        @csrf
+
+                        <button type="submit" class="<x-button />">Ban User</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
