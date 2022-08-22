@@ -47,6 +47,12 @@
                         <a href="/posts/post/{{ $post->id }}">
                             <h2 class="text-2xl font-semibold">{{ $post->title }}</h2>
                             <p class="text-sm mb-3">by {{ $post->user->username }}</p>
+                            <style>
+                                {{-- hide images from the home page --}}
+                                img {
+                                    display: none;
+                                }
+                            </style>
                             <p>{!! Str::of($post->body)->limit(300, '...')->markdown() !!}</p>
                             {{-- find a better way to do this later --}}
                             @if($post->comments->last() != null) {{-- if there are comments --}}
