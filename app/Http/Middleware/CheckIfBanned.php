@@ -9,7 +9,8 @@ use Illuminate\Support\Carbon;
 class CheckIfBanned
 {
     /**
-     * Handle an incoming request.
+     * Check to see if authenticated user is banned,
+     * if so, log them out and redirect to home page.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next

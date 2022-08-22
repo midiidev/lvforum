@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class BanController extends Controller
 {
+    /**
+     * Ban a user for the specified amount of time.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $request->validate([

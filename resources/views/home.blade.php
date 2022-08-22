@@ -32,7 +32,7 @@
                     {{-- adds hover: rounding differently depending on if the category --}}
                     {{-- is first, last, or neither --}}
                     <div class="hover:bg-slate-700 p-5 hover:cursor-pointer <?php if($loop->last){echo 'hover:rounded-b-xl';} ?>"> {{-- i know this is ugly, but it works --}}
-                        <a href="/posts/category/{{ $postCategory->slug }}">
+                        <a href="/?category={{ $postCategory->slug }}">
                             <h2 class="text-xl"><i class="{{ $postCategory->icon }}"></i> {{ $postCategory->name }}</h2>
                         </a>
                     </div>
@@ -67,6 +67,10 @@
                         <p>there are no posts yet, but you can change that!</p>
                     </div>
                 @endif
+
+                <div class="mt-20">
+                    {{ $posts->links() }}
+                </div>
             </div>
         </div>
     </div>

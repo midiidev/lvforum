@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
 
+    /**
+     * Change the default profile picture on the app.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function changeDefaultIcon(Request $request)
     {
         $request->validate([

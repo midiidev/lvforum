@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class AdminOnly
 {
     /**
-     * Handle an incoming request.
+     * Check to see if authenticated user is an admin,
+     * if not, redirect to home page.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next

@@ -7,14 +7,21 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function store(Post $post)
+    /**
+     * Store a newly created comment in the database.
+     *
+     * @param Post $post
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(Post $post, Request $request)
     {
-        request()->validate([
+        $request->validate([
             'comment-body' => 'required|min:10'
         ]);
 
         $post->comments()->create([
-            'body' => request('comment-body'),
+            'body'    => $request->{'comment-body'},
             'user_id' => auth()->user()->id
         ]);
 

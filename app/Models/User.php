@@ -47,6 +47,12 @@ class User extends Authenticatable
         $this->hasMany(Post::class);
     }
 
+    /**
+     * Eloquent mutator for the password attribute.
+     *
+     * @param $password
+     * @return void
+     */
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
