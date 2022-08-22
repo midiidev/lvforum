@@ -64,6 +64,7 @@ Route::controller(PostController::class)->group(function () {
 
 Route::controller(CommentController::class)->group(function () {
     Route::post('posts/post/{post}/comment', 'store')->middleware('auth');
+    Route::post('/posts/comments/{comment}/delete', 'destroy')->middleware('auth');
 });
 
 Route::controller(SettingsController::class)->group(function () {
