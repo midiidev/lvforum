@@ -140,7 +140,7 @@ class PostController extends Controller
             $post->delete();
             return redirect('/')->with('success', 'Post successfully deleted.');
         } else {
-            return redirect('/')->with('error', 'You are not authorized to delete this post.');
+            return redirect('/')->with('error', 'You are not authorised to delete this post.');
         }
     }
 }
