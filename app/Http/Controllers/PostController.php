@@ -27,7 +27,7 @@ class PostController extends Controller
             return view('home', [
                 'posts' => Post::latest()->with('user', 'comments')
                     ->where('category_id', $category->id)
-                    ->paginate(5)
+                    ->paginate(10)
                     ->withQueryString(),
                 'categories' => Category::all(),
                 'category' => $category
@@ -35,8 +35,8 @@ class PostController extends Controller
         } else {
             return view('home', [
                 'posts' => Post::with('category', 'user', 'comments')
-                    ->get()
-                    ->sortByDesc('id'),
+                    ->paginate(10)
+                    ->withQueryString(),
                 'categories' => Category::all()
             ]);
         }
