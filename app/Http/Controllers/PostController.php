@@ -34,7 +34,7 @@ class PostController extends Controller
             ]);
         } else {
             return view('home', [
-                'posts' => Post::with('category', 'user', 'comments')
+                'posts' => Post::latest()->with('category', 'user', 'comments')
                     ->paginate(10)
                     ->withQueryString(),
                 'categories' => Category::all()
