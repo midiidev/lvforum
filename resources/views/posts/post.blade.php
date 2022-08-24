@@ -4,7 +4,7 @@
         <div class="space-y-1">
             <h1 class="text-3xl">{{ $post->title }}</h1>
             <p class="text-sm">posted by <a class="underline" href="/users/{{ $post->user->id }}/profile">{{ $post->user->username }}</a> {{ $post->created_at->diffForHumans() }} ({{ $post->created_at->format('Y/m/d') }})</p>
-            <p>posted in <a class="underline" href="/?category={{ $post->category->slug }}">{{ $post->category->name }}</a></p>
+            <p class="text-sm">posted in <a class="underline" href="/?category={{ $post->category->slug }}">{{ $post->category->name }}</a></p>
             <div class="space-x-3 flex">
                 @if(auth()->check() && auth()->user()->role < 3 || auth()->check() && auth()->user()->id == $post->user_id)
                     <form method="POST" action="/posts/post/{{ $post->id }}/delete">
