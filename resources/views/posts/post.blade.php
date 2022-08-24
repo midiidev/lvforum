@@ -1,21 +1,23 @@
 <x-app title="{{ $post->title }}">
     <div class="mt-20 max-w-2xl mx-auto">
         <a href="/" class="text-sm text-slate-400">{{ '<' }} go back</a>
-        <h1 class="text-3xl">{{ $post->title }}</h1>
-        <p class="text-sm">posted by {{ $post->user->username }}</p>
-        <p class="text-sm">{{ $post->created_at->diffForHumans() }}</p>
-        <div class="space-x-3 flex">
-            @if(auth()->check() && auth()->user()->role < 3 || auth()->check() && auth()->user()->id == $post->user_id)
-                <form method="POST" action="/posts/post/{{ $post->id }}/delete">
-                    @csrf
-                    <button>
-                        <i class="fa-solid fa-trash-can"></i> Delete
-                    </button>
-                </form>
-                <a href="/posts/post/{{ $post->id }}/edit">
-                    <i class="fa-solid fa-edit"></i> Edit
-                </a>
-            @endif
+        <div class="space-y-1">
+            <h1 class="text-3xl">{{ $post->title }}</h1>
+            <p class="text-sm">posted by <a class="underline" href="/users/{{ $post->user->id }}/profile">{{ $post->user->username }}</a> {{ $post->created_at->diffForHumans() }} ({{ $post->created_at->format('Y/m/d') }})</p>
+            <p>posted in <a class="underline" href="/?category={{ $post->category->slug }}">{{ $post->category->name }}</a></p>
+            <div class="space-x-3 flex">
+                @if(auth()->check() && auth()->user()->role < 3 || auth()->check() && auth()->user()->id == $post->user_id)
+                    <form method="POST" action="/posts/post/{{ $post->id }}/delete">
+                        @csrf
+                        <button>
+                            <i class="fa-solid fa-trash-can"></i> Delete
+                        </button>
+                    </form>
+                    <a href="/posts/post/{{ $post->id }}/edit">
+                        <i class="fa-solid fa-edit"></i> Edit
+                    </a>
+                @endif
+            </div>
         </div>
         <div class="border-b border-b-slate-700 my-5"></div>
         <div class="prose prose-invert">

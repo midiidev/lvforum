@@ -1,9 +1,14 @@
 <x-app title="Home">
     <div class="mt-20 max-w-7xl mx-auto space-y-6">
         @if(!isset($category))
-            <h1 class="text-4xl text-center">All Posts</h1>
+            <div>
+                <h1 class="text-4xl text-center">All Posts</h1>
+            </div>
         @else
-            <h1 class="text-4xl text-center">{{ $category->name }}</h1>
+            <div>
+                <h1 class="text-4xl text-center">{{ $category->name }}</h1>
+                <p class="text-slate-400 text-center">{{ $category->description }}</p>
+            </div>
         @endif
         @auth
             @if(isset($category))
