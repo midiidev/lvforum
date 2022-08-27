@@ -17,8 +17,13 @@
             </button>
         </form>
         @endif
-        <p class="mt-2">
-            {{ $comment->body }}
-        </p>
+        <div class="prose prose-invert">
+            <style>
+                img {
+                    display: none;
+                }
+            </style>
+            {!! Str::of($comment->body)->markdown() !!}
+        </div>
     </div>
 </div>
