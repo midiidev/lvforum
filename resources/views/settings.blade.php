@@ -9,11 +9,15 @@
                     <div class="flex flex-col items-left justify-left mt-2">
                         <form method="POST" action="/settings/change-icon" enctype="multipart/form-data">
                             <label for="icon" class="flex items-left justify-left">
-                                <span class="<x-button /> cursor-pointer">Choose a file</span>
+                                <span class="<x-button /> cursor-pointer">
+                                    <i class="fa-solid fa-image mr-2"></i> Choose a file
+                                </span>
                             </label>
                             <input name="icon" id="icon" type="file" class="hidden">
                             @csrf
-                            <button type="submit" class="<x-button /> mt-5">Upload</button>
+                            <button type="submit" class="<x-button /> mt-5">
+                                <i class="fa-solid fa-floppy-disk mr-2"></i> Save
+                            </button>
                         </form>
                         @error('icon')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -71,7 +75,9 @@
 
                         @csrf
 
-                        <button type="submit" class="<x-button />">Change Password</button>
+                        <button type="submit" class="<x-button />">
+                            <i class="fa-solid fa-floppy-disk mr-2"></i> Save
+                        </button>
                     </form>
                 </div>
             </div>

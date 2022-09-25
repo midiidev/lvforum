@@ -42,7 +42,9 @@
                             <p class="text-error text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-primary mt-2">Post comment</button>
+                        <button type="submit" class="btn btn-primary mt-4">
+                            <i class="fa-solid fa-plus mr-2"></i> Post Comment
+                        </button>
                     </form>
                 </div>
             </div>

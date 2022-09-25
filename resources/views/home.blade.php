@@ -113,7 +113,7 @@
 
                 <div class="modal-action">
                     <button type="submit" class="btn btn-primary">
-                        Create Post
+                        <i class="fa-solid fa-file-pen mr-2"></i> Create Post
                     </button>
                 </div>
             </form>
