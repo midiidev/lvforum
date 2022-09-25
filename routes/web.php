@@ -42,10 +42,7 @@ Route::controller(PostController::class)->group(function () {
         ]);
     });
 
-    Route::get('create-post/category/{category}', 'create')->middleware('auth');
     Route::post('create-post', 'store')->middleware(['auth', 'throttle:create']);
-
-    Route::get('posts/post/{post}/edit', 'edit')->middleware('auth');
 
     Route::post('posts/post/{post}/delete', 'destroy')->middleware(['auth', 'throttle:update']);
     Route::post('posts/post/{post}/edit', 'update')->middleware(['auth', 'throttle:update']);
