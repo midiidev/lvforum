@@ -111,7 +111,11 @@
 
                 <input name="category_id" id="category_id" value="{{ $category->id }}" hidden>
 
-                <button type="submit" class="btn btn-primary">Create Post</button>
+                <div class="modal-action">
+                    <button type="submit" class="btn btn-primary">
+                        Create Post
+                    </button>
+                </div>
             </form>
         </x-modal>
     @endif
