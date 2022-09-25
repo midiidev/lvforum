@@ -28,6 +28,9 @@ $nav_items = [
         </ul>
     </div>
     <div class="navbar-end">
+        <button data-toggle-theme="dark,light" data-act-class="ACTIVECLASS" class="btn btn-ghost btn-square">
+            <i class="fa-solid fa-circle-half-stroke fa-xl"></i>
+        </button>
         @auth
             <div class="dropdown dropdown-end">
                 <label tabindex="0" class="btn btn-ghost normal-case"><i class="fa-solid fa-user mr-2"></i> {{ auth()->user()->username }}</label>
