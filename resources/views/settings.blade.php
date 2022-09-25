@@ -7,15 +7,15 @@
                 <div>
                     <h2 class="text-2xl">Change Profile Picture</h2>
                     <div class="flex flex-col items-left justify-left mt-2">
-                        <form method="POST" action="/settings/change-icon" enctype="multipart/form-data">
+                        <form method="POST" action="/settings/change-icon" enctype="multipart/form-data" class="flex space-x-3">
                             <label for="icon" class="flex items-left justify-left">
-                                <span class="<x-button /> cursor-pointer">
+                                <span class="btn btn-accent">
                                     <i class="fa-solid fa-image mr-2"></i> Choose a file
                                 </span>
                             </label>
                             <input name="icon" id="icon" type="file" class="hidden">
                             @csrf
-                            <button type="submit" class="<x-button /> mt-5">
+                            <button type="submit" class="btn btn-primary">
                                 <i class="fa-solid fa-floppy-disk mr-2"></i> Save
                             </button>
                         </form>
@@ -42,40 +42,30 @@
                 </div>
                 <div>
                     <form method="POST" action="/settings/change-password" class="space-y-5">
-                        <div>
-                            <label for="current_password" class="block font-bold">Current Password</label>
-                            <input name="current_password"
-                                   id="current_password"
-                                   type="password"
-                                   class="<x-input />"
-                                   required>
-                            @error('current_password')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
+                        <div class="form-control w-full">
+                            <label class="label" for="current_password">
+                                <span class="label-text">Current Password</span>
+                            </label>
+                            <input name="current_password" id="current_password" type="password" class="input input-bordered w-full" required />
+                            <x-validation-error error="current_password" />
                         </div>
-                        <div>
-                            <label for="new_password" class="block font-bold">New Password</label>
-                            <input name="new_password"
-                                   id="new_password"
-                                   type="password"
-                                   class="<x-input />"
-                                   required>
-                            @error('new_password')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
+                        <div class="form-control w-full">
+                            <label class="label" for="new_password">
+                                <span class="label-text">New Password</span>
+                            </label>
+                            <input name="new_password" id="new_password" type="password" class="input input-bordered w-full" required />
+                            <x-validation-error error="new_password" />
                         </div>
-                        <div>
-                            <label for="new_password_confirmation" class="block font-bold">Confirm New Password</label>
-                            <input name="new_password_confirmation"
-                                   id="new_password_confirmation"
-                                   type="password"
-                                   class="<x-input />"
-                                   required>
+                        <div class="form-control w-full">
+                            <label class="label" for="new_password_confirmation">
+                                <span class="label-text">Confirm New Password</span>
+                            </label>
+                            <input name="new_password_confirmation" id="new_password_confirmation" type="password" class="input input-bordered w-full" required />
                         </div>
 
                         @csrf
 
-                        <button type="submit" class="<x-button />">
+                        <button type="submit" class="btn btn-primary">
                             <i class="fa-solid fa-floppy-disk mr-2"></i> Save
                         </button>
                     </form>

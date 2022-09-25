@@ -38,9 +38,7 @@
                                 <span class="label-text">Post a comment</span>
                             </label>
                             <textarea name="comment-body" id="comment-body" type="text" class="textarea textarea-bordered w-full" rows="3" required>{{ old('comment-body') }}</textarea>
-                            @error('comment-body')
-                            <p class="text-error text-sm mt-1">{{ $message }}</p>
-                            @enderror
+                            <x-validation-error error="comment-body" />
                         </div>
                         <button type="submit" class="btn btn-primary mt-4">
                             <i class="fa-solid fa-plus mr-2"></i> Post Comment
@@ -84,9 +82,7 @@
                            disabled
                            @endif
                            required />
-                    @error('title')
-                    <p class="text-error text-sm mt-1">{{ $message }}</p>
-                    @enderror
+                    <x-validation-error error="title" />
                 </div>
 
                 <div class="form-control w-full">
@@ -94,9 +90,7 @@
                         <span class="label-text">Post Body</span>
                     </label>
                     <textarea name="body" id="body" type="text" class="textarea textarea-bordered w-full" rows="8" required>{{ $post->body }}</textarea>
-                    @error('body')
-                    <p class="text-error text-sm mt-1">{{ $message }}</p>
-                    @enderror
+                    <x-validation-error error="body" />
                 </div>
 
                 @csrf

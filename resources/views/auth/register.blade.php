@@ -8,9 +8,7 @@
                     <span class="label-text">Username</span>
                 </label>
                 <input name="username" id="username" type="text" class="input input-bordered w-full" value="{{ old('username') }}" required />
-                @error('username')
-                <p class="text-error text-sm mt-1">{{ $message }}</p>
-                @enderror
+                <x-validation-error error="username" />
             </div>
 
             <div class="form-control w-full">
@@ -18,9 +16,7 @@
                     <span class="label-text">Email</span>
                 </label>
                 <input name="email" id="email" type="email" class="input input-bordered w-full" value="{{ old('email') }}" required />
-                @error('email')
-                <p class="text-error text-sm mt-1">{{ $message }}</p>
-                @enderror
+                <x-validation-error error="email" />
             </div>
 
             <div class="form-control w-full">
@@ -28,9 +24,7 @@
                     <span class="label-text">Password</span>
                 </label>
                 <input name="password" id="password" type="password" class="input input-bordered w-full" required />
-                @error('password')
-                <p class="text-error text-sm mt-1">{{ $message }}</p>
-                @enderror
+                <x-validation-error error="password" />
             </div>
 
             <div class="form-control w-full">

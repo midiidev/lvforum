@@ -90,9 +90,7 @@
                         <span class="label-text">Post Title</span>
                     </label>
                     <input name="title" id="title" type="text" class="input input-bordered w-full" value="{{ old('title') }}" required />
-                    @error('title')
-                    <p class="text-error text-sm mt-1">{{ $message }}</p>
-                    @enderror
+                    <x-validation-error error="title" />
                 </div>
 
                 <p>Category: <b>{{ $category->name }}</b></p>
@@ -102,9 +100,7 @@
                         <span class="label-text">Post Body</span>
                     </label>
                     <textarea name="body" id="body" type="text" class="textarea textarea-bordered w-full" rows="8" required>{{ old('body') }}</textarea>
-                    @error('body')
-                    <p class="text-error text-sm mt-1">{{ $message }}</p>
-                    @enderror
+                    <x-validation-error error="body" />
                 </div>
 
                 @csrf

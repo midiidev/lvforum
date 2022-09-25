@@ -14,20 +14,19 @@
                 </div>
                 <div>
                     <form method="POST" action="/admin/change-role" class="space-y-5">
-                        <div>
-                            <label for="username" class="block font-bold">Username</label>
-                            <input name="username"
-                                   id="username"
-                                   type="text"
-                                   class="<x-input />"
-                                   required>
-                            @error('username')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
+                        <div class="form-control w-full">
+                            <label class="label" for="username">
+                                <span class="label-text">Username</span>
+                            </label>
+                            <input name="username" id="username" type="text" class="input input-bordered w-full" value="{{ old('username') }}" required />
+                            <x-validation-error error="username" />
                         </div>
-                        <div>
-                            <label for="new_role" class="block font-bold">New Role</label>
-                            <select name="new_role" id="new_role" class="<x-input />">
+
+                        <div class="form-control w-full">
+                            <label class="label" for="new_role">
+                                <span class="label-text">New Role</span>
+                            </label>
+                            <select name="new_role" id="new_role" class="select select-bordered w-full">
                                 <option value="0" disabled>0: Root</option>
                                 @if(auth()->user()->role < 1)
                                     <option value="1">1: Admin</option>
@@ -37,14 +36,12 @@
                                 <option value="2">2: Mod</option>
                                 <option value="3">3: User</option>
                             </select>
-                            @error('new_password')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
+                            <x-validation-error error="new_role" />
                         </div>
 
                         @csrf
 
-                        <button type="submit" class="<x-button />">Change Role</button>
+                        <button type="submit" class="btn btn-primary">Change Role</button>
                     </form>
                 </div>
 
@@ -57,21 +54,17 @@
                 </div>
                 <div>
                     <form method="POST" action="/admin/check-role" class="space-y-5">
-                        <div>
-                            <label for="username" class="block font-bold">Username</label>
-                            <input name="username"
-                                   id="username"
-                                   type="text"
-                                   class="<x-input />"
-                                   required>
-                            @error('username')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
+                        <div class="form-control w-full">
+                            <label class="label" for="username">
+                                <span class="label-text">Username</span>
+                            </label>
+                            <input name="username" id="username" type="text" class="input input-bordered w-full" value="{{ old('username') }}" required />
+                            <x-validation-error error="username" />
                         </div>
 
                         @csrf
 
-                        <button type="submit" class="<x-button />">Check Role</button>
+                        <button type="submit" class="btn btn-primary">Check Role</button>
                     </form>
                 </div>
 
@@ -80,15 +73,15 @@
                     <div class="flex flex-col items-left justify-left mt-2">
                         <form method="POST" action="/admin/change-default-icon" enctype="multipart/form-data">
                             <label for="icon" class="flex items-left justify-left">
-                                <span class="<x-button /> cursor-pointer">Choose a file</span>
+                                <span class="btn btn-accent cursor-pointer">
+                                    <i class="fa-solid fa-image mr-2"></i> Choose a file
+                                </span>
                             </label>
                             <input name="icon" id="icon" type="file" class="hidden">
                             @csrf
-                            <button type="submit" class="<x-button /> mt-5">Upload</button>
+                            <button type="submit" class="btn btn-primary mt-3">Upload</button>
                         </form>
-                        @error('icon')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
+                        <x-validation-error error="icon" />
                     </div>
                 </div>
                 <div>
@@ -105,32 +98,26 @@
                 </div>
                 <div>
                     <form method="POST" action="/admin/ban-user" class="space-y-5">
-                        <div>
-                            <label for="username" class="block font-bold">Username</label>
-                            <input name="username"
-                                   id="username"
-                                   type="text"
-                                   class="<x-input />"
-                                   required>
-                            @error('username')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
+                        <div class="form-control w-full">
+                            <label class="label" for="username">
+                                <span class="label-text">Username</span>
+                            </label>
+                            <input name="username" id="username" type="text" class="input input-bordered w-full" value="{{ old('username') }}" required />
+                            <x-validation-error error="username" />
                         </div>
-                        <div>
-                            <label for="time" class="block font-bold">Ban time (in days)</label>
-                            <input name="time"
-                                   id="time"
-                                   type="number"
-                                   class="<x-input />"
-                                   required>
-                            @error('time')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
+                        <div class="form-control w-full">
+                            <label class="label" for="time">
+                                <span class="label-text">Ban time (in days)</span>
+                            </label>
+                            <input name="time" id="time" type="number" class="input input-bordered w-full" value="{{ old('time') }}" required />
+                            <x-validation-error error="time" />
                         </div>
 
                         @csrf
 
-                        <button type="submit" class="<x-button />">Ban User</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa-solid fa-ban mr-2"></i> Ban User
+                        </button>
                     </form>
                 </div>
             </div>
