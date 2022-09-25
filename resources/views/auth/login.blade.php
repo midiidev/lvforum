@@ -1,36 +1,31 @@
-<x-app title="Register">
+<x-app title="Login">
     <h1 class="mt-20 text-3xl text-center">Log In</h1>
 
-    <div class="max-w-xl mx-auto mt-10 border border-slate-700 bg-slate-800 rounded-xl p-5">
+    <div class="max-w-xl mx-auto mt-10 panel p-5">
         <form method="POST" class="space-y-10 mt-0">
-            <div>
-                <label for="email" class="block font-bold">Email</label>
-                <input name="email"
-                       id="email"
-                       type="email"
-                       value="{{ old('email') }}"
-                       class="<x-input />"
-                       required>
+            <div class="form-control w-full">
+                <label class="label" for="email">
+                    <span class="label-text">Email</span>
+                </label>
+                <input name="email" id="email" type="email" class="input input-bordered w-full" value="{{ old('email') }}" required />
                 @error('email')
-                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    <p class="text-error text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
 
-            <div>
-                <label for="password" class="block font-bold">Password</label>
-                <input name="password"
-                       id="password"
-                       type="password"
-                       class="<x-input />"
-                       required>
+            <div class="form-control w-full">
+                <label class="label" for="password">
+                    <span class="label-text">Password</span>
+                </label>
+                <input name="password" id="password" type="password" class="input input-bordered w-full" required />
                 @error('password')
-                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                <p class="text-error text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
 
             @csrf
 
-            <button type="submit" class="<x-button />">Log In</button>
+            <button type="submit" class="btn btn-primary">Log In</button>
         </form>
     </div>
 </x-app>

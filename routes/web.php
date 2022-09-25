@@ -36,17 +36,6 @@ Route::controller(AuthController::class)->group(function () {
 Route::controller(PostController::class)->group(function () {
     Route::get('/', 'index')->name('home');
 
-    Route::get('/posts/category/{category:slug}', function (Category $category) {
-        return view('home', [
-            'posts' => Post::with('user', 'comments')
-                ->where('category_id', $category->id)
-                ->get()
-                ->sortByDesc('id'),
-            'categories' => Category::all(),
-            'category' => $category
-        ]);
-    });
-
     Route::get('posts/post/{post}', function (Post $post) {
         return view('posts.post', [
             'post' => $post

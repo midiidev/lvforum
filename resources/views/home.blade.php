@@ -13,42 +13,36 @@
         @auth
             @if(isset($category))
                 <p class="text-right">
-                    <a href="/create-post/category/{{ $category->id }}" class="bg-indigo-600 p-4 rounded-xl">
-                        <i class="fa-solid fa-plus"></i> Create Post
-                    </a>
+                    <label for="create-post-modal" class="btn btn-primary">
+                        <i class="fa-solid fa-plus mr-2"></i> Create Post
+                    </label>
                 </p>
             @else
                 <p class="text-right">
-                    <span class="bg-indigo-600 p-4 rounded-xl">
-                        <i class="fa-solid fa-plus"></i> Go to a category to create a post.
+                    <span class="btn btn-primary">
+                        <i class="fa-solid fa-plus mr-2"></i> Go to a category to create a post.
                     </span>
                 </p>
             @endif
         @endauth
         <div class="md:grid grid-cols-4 gap-10">
-            <div class="bg-slate-800 rounded-xl hover:cursor-pointer mb-auto row-end-auto">
-                <div class="hover:bg-slate-700 p-5 hover:cursor-pointer hover:rounded-t-xl">
-                    <a href="/">
-                        <h2 class="text-xl"><i class="fa-solid fa-comment"></i> All Posts</h2>
+            <div class="rounded-xl hover:cursor-pointer mb-auto row-end-auto bg-base-200 rounded-xl divide-y divide-base-100">
+                <div>
+                    <a href="/" class="block p-5 text-xl hover:bg-base-100/50">
+                        <i class="fa-solid fa-comment fa-fw"></i> All Posts
                     </a>
                 </div>
-                <div class="mx-auto border-b border-b-slate-700 w-10/12"></div>
-                @foreach($categories as $postCategory)
-                    {{-- adds hover: rounding differently depending on if the category --}}
-                    {{-- is first, last, or neither --}}
-                    <div class="hover:bg-slate-700 p-5 hover:cursor-pointer <?php if($loop->last){echo 'hover:rounded-b-xl';} ?>"> {{-- i know this is ugly, but it works --}}
-                        <a href="/?category={{ $postCategory->slug }}">
-                            <h2 class="text-xl"><i class="{{ $postCategory->icon }}"></i> {{ $postCategory->name }}</h2>
+                @foreach($categories as $pcategory)
+                    <div>
+                        <a href="/?category={{ $pcategory->slug }}" class="block p-5 text-xl hover:bg-base-100/50">
+                            <i class="{{ $pcategory->icon }} fa-fw"></i> {{ $pcategory->name }}
                         </a>
                     </div>
-                    @unless($loop->last)
-                        <div class="mx-auto border-b border-b-slate-700 w-10/12"></div>
-                    @endunless
                 @endforeach
             </div>
             <div class="col-span-3 space-y-5 mt-5 md:mt-0">
                 @foreach($posts as $post)
-                    <div class="bg-slate-800 hover:bg-slate-700 rounded-xl p-5 hover:cursor-pointer">
+                    <div class="card card-body bg-base-200 hover:cursor-pointer">
                         <a href="/posts/post/{{ $post->id }}">
                             <h2 class="text-2xl font-semibold">{{ $post->title }}</h2>
                             <p class="text-sm mb-3">by {{ $post->user->username }}</p>
@@ -73,7 +67,7 @@
                     </div>
                 @endforeach
                 @if($posts->count() == 0)
-                    <div class="space-y-4 text-slate-500">
+                    <div class="space-y-4">
                         <h1 class="text-2xl">We're sorry :(</h1>
                         <p>there are no posts yet, but you can change that!</p>
                     </div>
@@ -85,4 +79,40 @@
             </div>
         </div>
     </div>
+
+    {{-- create post modal --}}
+    @if(isset($category))
+        <x-modal id="create-post-modal">
+            <h3 class="font-bold text-lg">Create Post</h3>
+            <form method="POST" action="/create-post" class="space-y-10 mt-0">
+                <div class="form-control w-full">
+                    <label class="label" for="title">
+                        <span class="label-text">Post Title</span>
+                    </label>
+                    <input name="title" id="title" type="text" class="input input-bordered w-full" value="{{ old('title') }}" required />
+                    @error('title')
+                    <p class="text-error text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <p>Category: <b>{{ $category->name }}</b></p>
+
+                <div class="form-control w-full">
+                    <label class="label" for="body">
+                        <span class="label-text">Post Body</span>
+                    </label>
+                    <textarea name="body" id="body" type="text" class="textarea textarea-bordered w-full" rows="8" required>{{ old('body') }}</textarea>
+                    @error('body')
+                    <p class="text-error text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                @csrf
+
+                <input name="category_id" id="category_id" value="{{ $category->id }}" hidden>
+
+                <button type="submit" class="btn btn-primary">Create Post</button>
+            </form>
+        </x-modal>
+    @endif
 </x-app>

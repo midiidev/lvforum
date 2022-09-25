@@ -6,64 +6,50 @@ $nav_items = [
 ]
 @endphp
 
-<nav class="p-4 md:px-10 shadow-lg sticky top-0 backdrop-blur">
-    <div class="flex text-lg justify-between">
-        <div class="space-x-5 my-auto">
-            <span x-data="{ show: false }" id="itemList" class="md:hidden">
-                <button class="border border-indigo-600 border-2 rounded px-2" @click="show = !show">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-                <a href="/" class="md:hidden ml-4 font-bold">{{ env('APP_NAME') }}</a>
-
-                <div x-show="show">
-                    <ul class="space-y-2 mt-2">
-                        @foreach($nav_items as $item)
-                            {!! '<li>' . $item . '</li>' !!}
-                        @endforeach
-                    </ul>
-                </div>
-            </span>
-            <a href="/" class="hidden md:inline font-bold">{{ env('APP_NAME') }}</a>
-            <span class="hidden md:inline space-x-5">
+<div class="navbar sticky top-0 z-50 backdrop-blur">
+    <div class="navbar-start">
+        <div class="dropdown">
+            <label tabindex="0" class="btn btn-ghost lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </label>
+            <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                 @foreach($nav_items as $item)
-                    {!! $item !!}
+                    <li>{!! $item !!}</li>
                 @endforeach
-            </span>
+            </ul>
         </div>
-        <div class="space-x-5 my-auto">
-            @auth
-
-            <span class="space-x-5">
-                <div x-data="{ show: false }">
-                    <button @click="show = !show">
-                        {{ auth()->user()->username }}
-                    </button>
-
-                    <div x-show="show" class="fixed bg-slate-800 w-40 rounded-xl top-16 right-10">
-                        <a href="/users/{{ auth()->user()->id }}/profile" class="block hover:bg-slate-700 rounded-xl p-2"><i class="fa-solid fa-user"></i> Profile</a>
-                        <a href="/settings" class="block hover:bg-slate-700 rounded-xl p-2"><i class="fa-solid fa-gears"></i> Settings</a>
-                        @if(auth()->user()->role <= 1)
-                        <a href="/admin/panel" class="block hover:bg-slate-700 rounded-xl p-2"><i class="fa-solid fa-gavel"></i> Admin Panel</a>
-                        @endif
-                        <form method="POST" action="/logout">
-                            @csrf
-                            <button type="submit" class="w-full text-left hover:bg-slate-700 rounded-xl p-2"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
-                        </form>
-                    </div>
-                </div>
-            </span>
-            @else
-            <span class="space-x-5">
-                <a href="/login"><i class="mt-2 fa-solid fa-right-to-bracket"></i> Login</a>
-                <a href="/register" class="mt-2 bg-indigo-600 p-2 rounded"><i class="fa-solid fa-user-plus"></i> Register</a>
-            </span>
-            @endauth
-        </div>
+        <a class="btn btn-ghost normal-case text-xl">{{ env('APP_NAME') }}</a>
     </div>
-</nav>
-
-<script>
-    window.toggleItems = function(){
-        document.getElementById('itemList').__x.$data.show = ! show;
-    }
-</script>
+    <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal p-0">
+            @foreach($nav_items as $item)
+                <li>{!! $item !!}</li>
+            @endforeach
+        </ul>
+    </div>
+    <div class="navbar-end">
+        @auth
+            <div class="dropdown dropdown-end">
+                <label tabindex="0" class="btn btn-ghost normal-case"><i class="fa-solid fa-user mr-2"></i> {{ auth()->user()->username }}</label>
+                <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                    <li><a href="/users/{{ auth()->user()->id }}/profile"><i class="fa-solid fa-user fa-fw"></i> Profile</a></li>
+                    <li><a href="/settings"><i class="fa-solid fa-gears fa-fw"></i> Settings</a></li>
+                    @if(auth()->user()->role <= 1)
+                        <li><a href="/admin/panel"><i class="fa-solid fa-gavel fa-fw"></i> Admin Panel</a></li>
+                    @endif
+                    <form method="POST" action="/logout">
+                        @csrf
+                        <li><button type="submit"><i class="fa-solid fa-right-from-bracket fa-fw"></i> Logout</button></li>
+                    </form>
+                </ul>
+            </div>
+        @else
+            <span class="sm:space-x-1">
+                <a href="/login" class="btn btn-outline btn-secondary">
+                    <i class="fa-solid fa-right-to-bracket sm:mr-2"></i><span class="hidden sm:flex"> Login</span>
+                </a>
+                <a href="/register" class="btn btn-primary"><i class="fa-solid fa-user-plus mr-2"></i> Register</a>
+            </span>
+        @endauth
+    </div>
+</div>
