@@ -25,10 +25,10 @@ use Illuminate\Support\Facades\Route;
 // authentication routes
 Route::controller(AuthController::class)->group(function () {
     Route::get('register', 'register_create')->middleware('guest')->name('register');
-    Route::post('register', 'register_store')->middleware('guest');
+    Route::post('register', 'register_store')->middleware(['guest', 'throttle:register']);
 
     Route::get('login', 'login_create')->middleware('guest')->name('login');
-    Route::post('login', 'login_store')->middleware('guest');
+    Route::post('login', 'login_store')->middleware(['guest', 'throttle:login']);
 
     Route::post('logout', 'destroy')->middleware('auth')->name('logout');
 });
@@ -54,23 +54,23 @@ Route::controller(PostController::class)->group(function () {
     });
 
     Route::get('create-post/category/{category}', 'create')->middleware('auth');
-    Route::post('create-post', 'store')->middleware('auth');
+    Route::post('create-post', 'store')->middleware(['auth', 'throttle:create']);
 
     Route::get('posts/post/{post}/edit', 'edit')->middleware('auth');
 
-    Route::post('posts/post/{post}/delete', 'destroy')->middleware('auth');
-    Route::post('posts/post/{post}/edit', 'update')->middleware('auth');
+    Route::post('posts/post/{post}/delete', 'destroy')->middleware(['auth', 'throttle:update']);
+    Route::post('posts/post/{post}/edit', 'update')->middleware(['auth', 'throttle:update']);
 });
 
 Route::controller(CommentController::class)->group(function () {
-    Route::post('posts/post/{post}/comment', 'store')->middleware('auth');
-    Route::post('/posts/comments/{comment}/delete', 'destroy')->middleware('auth');
+    Route::post('posts/post/{post}/comment', 'store')->middleware(['auth', 'throttle:create']);
+    Route::post('/posts/comments/{comment}/delete', 'destroy')->middleware(['auth', 'throttle:update']);
 });
 
 Route::controller(SettingsController::class)->group(function () {
     Route::get('settings', 'view')->middleware('auth');
     Route::post('settings/change-password', 'changePassword')->middleware('auth');
-    Route::post('settings/change-icon', 'changeIcon')->middleware('auth');
+    Route::post('settings/change-icon', 'changeIcon')->middleware(['auth', 'throttle:update']);
 });
 
 // admin routes
