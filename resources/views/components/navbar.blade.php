@@ -1,8 +1,20 @@
 @php
 $nav_items = [
-    '<a href="/"><i class="fa-solid fa-house-chimney"></i> Home</a>',
-    '<a href="/users"><i class="fa-solid fa-users"></i> Users</a>',
-    '<a href="/stats"><i class="fa-solid fa-chart-simple"></i> Stats</a>'
+    [
+        'name' => 'Home',
+        'link' => '/',
+        'icon' => 'fa-solid fa-house-chimney'
+    ],
+    [
+        'name' => 'Users',
+        'link' => '/users',
+        'icon' => 'fa-solid fa-users'
+    ],
+    [
+        'name' => 'Stats',
+        'link' => '/stats',
+        'icon' => 'fa-solid fa-chart-simple'
+    ]
 ]
 @endphp
 
@@ -14,7 +26,7 @@ $nav_items = [
             </label>
             <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                 @foreach($nav_items as $item)
-                    <li>{!! $item !!}</li>
+                    <li><a href="{{ $item['link'] }}"><i class="{{ $item['icon'] }}"></i> {{ $item['name'] }}</a></li>
                 @endforeach
             </ul>
         </div>
@@ -23,7 +35,7 @@ $nav_items = [
     <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal p-0">
             @foreach($nav_items as $item)
-                <li>{!! $item !!}</li>
+                <li><a href="{{ $item['link'] }}"><i class="{{ $item['icon'] }} fa-fw"></i> {{ $item['name'] }}</a></li>
             @endforeach
         </ul>
     </div>
@@ -51,7 +63,9 @@ $nav_items = [
                 <a href="/login" class="btn btn-outline btn-secondary">
                     <i class="fa-solid fa-right-to-bracket sm:mr-2"></i><span class="hidden sm:flex"> Login</span>
                 </a>
-                <a href="/register" class="btn btn-primary"><i class="fa-solid fa-user-plus mr-2"></i> Register</a>
+                <a href="/register" class="btn btn-primary">
+                    <i class="fa-solid fa-user-plus sm:mr-2"></i><span class="hidden sm:flex"> Register</span>
+                </a>
             </span>
         @endauth
     </div>
