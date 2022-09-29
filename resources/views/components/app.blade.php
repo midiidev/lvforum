@@ -21,7 +21,9 @@
 <div>
     <x-navbar />
 
-    {{ $slot }}
+    <div class="w-11/12 mx-auto">
+        {{ $slot }}
+    </div>
 
     <x-footer />
 

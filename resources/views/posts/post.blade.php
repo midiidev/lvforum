@@ -1,5 +1,5 @@
 <x-app title="{{ $post->title }}">
-    <div class="mt-20 max-w-2xl mx-auto">
+    <div class="mt-20 max-w-2xl">
         <a href="/" id="back-link" class="text-sm text-slate-400">{{ '<' }} go back</a>
         <div class="space-y-1">
             <h1 class="text-3xl">{{ $post->title }}</h1>
