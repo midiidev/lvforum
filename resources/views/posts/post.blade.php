@@ -1,4 +1,4 @@
-<x-app title="{{ $post->title }}">
+<x-app title="{{ $post->title }}" description="{{ Str::limit($post->body, 250) }}">
     <div class="mt-20 max-w-2xl mx-auto">
         <a href="/" id="back-link" class="text-sm text-slate-400">{{ '<' }} go back</a>
         <div class="space-y-1">

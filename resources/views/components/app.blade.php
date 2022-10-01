@@ -6,11 +6,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"></script>
 
-    @isset($title)
-    <title>{{ $title }} - {{ env('APP_NAME') }}</title>
-    @else
-    <title>{{ env('APP_NAME') }}</title>
-    @endisset
+    <x-meta title="{{ $title . ' - ' . env('APP_NAME') ?? env('APP_NAME') }}"
+            description="{{ $description ?? 'LVForum is an open source forum created with Laravel made to be hosted by anyone for anything. A demo of LVForum is available at https://lvforum.fireash.xyz' }}"
+            url="{{ env('APP_URL') }}"
+            image="/images/meta-image.png"></x-meta>
 
     @vite('resources/css/app.css')
 
