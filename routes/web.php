@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BanController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
@@ -72,5 +73,8 @@ Route::prefix('admin')->group(function () {
         Route::post('/change-default-icon', [AdminController::class, 'changeDefaultIcon']);
 
         Route::post('/ban-user', [BanController::class, 'store']);
+
+        Route::post('/create-category', [CategoryController::class, 'store']);
+        Route::post('/delete-category', [CategoryController::class, 'destroy']);
     });
 });

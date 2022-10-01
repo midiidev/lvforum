@@ -120,6 +120,69 @@
                         </button>
                     </form>
                 </div>
+
+                <div>
+                    <h2 class="text-2xl">Manage Categories</h2>
+                    <p>Create and remove post categories.</p>
+                </div>
+                <div class="space-y-10">
+                    <form method="POST" action="/admin/create-category" class="space-y-5">
+                        <div class="form-control w-full">
+                            <label class="label" for="name">
+                                <span class="label-text">Name</span>
+                            </label>
+                            <input name="name" id="name" type="text" class="input input-bordered w-full" value="{{ old('name') }}" required />
+                            <x-validation-error error="name" />
+                        </div>
+                        <div class="form-control w-full">
+                            <label class="label" for="slug">
+                                <span class="label-text">Slug ({{ env('APP_URL') }}/?category=slug)</span>
+                            </label>
+                            <input name="slug" id="slug" type="text" class="input input-bordered w-full" value="{{ old('slug') }}" required />
+                            <x-validation-error error="slug" />
+                        </div>
+                        <div class="form-control w-full">
+                            <label class="label" for="icon">
+                                <span class="label-text">Icon (fa-style fa-icon)</span>
+                            </label>
+                            <input name="icon" id="icon" type="text" class="input input-bordered w-full" value="{{ old('icon') }}" />
+                            <x-validation-error error="icon" />
+                        </div>
+                        <div class="form-control w-full">
+                            <label class="label" for="description">
+                                <span class="label-text">Description</span>
+                            </label>
+                            <input name="description" id="description" type="text" class="input input-bordered w-full" value="{{ old('description') }}" />
+                            <x-validation-error error="description" />
+                        </div>
+
+                        @csrf
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa-solid fa-plus mr-2"></i> Create Category
+                        </button>
+                    </form>
+
+                    <form method="POST" action="/admin/delete-category" class="space-y-5">
+                        <div class="form-control w-full">
+                            <label class="label" for="category">
+                                <span class="label-text">Choose Category</span>
+                            </label>
+                            <select name="category" id="category" class="select select-bordered w-full">
+                                @foreach(\App\Models\Category::all() as $category)
+                                    <option value="{{ $category->slug }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                            <x-validation-error error="category" />
+                        </div>
+
+                        @csrf
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa-solid fa-xmark mr-2"></i> Delete Category
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

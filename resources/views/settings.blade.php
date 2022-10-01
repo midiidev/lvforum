@@ -1,5 +1,5 @@
 <x-app title="Settings">
-    <div class="mt-20 max-w-2xl space-y-6">
+    <div class="mt-20 max-w-2xl mx-auto space-y-6">
         <div class="space-y-5">
             <h1 class="text-4xl">Account Settings</h1>
             <div class="border-b border-b-slate-700"></div>

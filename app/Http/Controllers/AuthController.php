@@ -57,6 +57,7 @@ class AuthController extends Controller
      *
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws ValidationException
      */
     public function login_store(Request $request)
     {
