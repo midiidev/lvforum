@@ -42,8 +42,8 @@
             </div>
             <div class="col-span-3 space-y-5 mt-5 md:mt-0">
                 @foreach($posts as $post)
-                    <div class="card card-body bg-base-200 hover:cursor-pointer">
-                        <a href="/posts/post/{{ $post->id }}">
+                    <div class="rounded-2xl bg-base-200 hover:cursor-pointer">
+                        <a href="/posts/post/{{ $post->id }}" class="card card-body hover:bg-base-100/50">
                             <h2 class="text-2xl font-semibold">{{ $post->title }}</h2>
                             <p class="text-sm mb-3">by {{ $post->user->username }}</p>
                             <style>
