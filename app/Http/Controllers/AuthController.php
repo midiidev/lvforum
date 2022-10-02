@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
@@ -25,14 +26,23 @@ class AuthController extends Controller
      *
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws ValidationException
      */
     public function register_store(Request $request)
     {
+        $request['email'] = strtolower($request['email']);
+
         $attributes = $request->validate([
             'username' => 'required|alpha_dash|unique:users,username|min:3|max:50',
             'email'    => 'required|email|unique:users,email|max:255',
             'password' => 'required|confirmed|min:8|max:255'
         ]);
+
+        if (User::whereRaw('lower(username) = lower(?)', $request['username'])->first() != null) {
+            throw ValidationException::withMessages([
+                'username' => 'The selected username is already in use.'
+            ]);
+        }
 
         $user = User::create($attributes);
         event(new Registered($user));
@@ -61,6 +71,8 @@ class AuthController extends Controller
      */
     public function login_store(Request $request)
     {
+        $request['email'] = strtolower($request['email']);
+
         $attributes = $request->validate([
             'email' => 'required|exists:users,email',
             'password' => 'required'
@@ -73,8 +85,8 @@ class AuthController extends Controller
         }
 
         throw ValidationException::withMessages([
-            'username' => 'The username or password you provided is incorrect.',
-            'password' => 'The username or password you provided is incorrect.'
+            'email' => 'The email or password you provided is incorrect.',
+            'password' => 'The email or password you provided is incorrect.'
         ]);
     }
 
