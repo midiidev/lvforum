@@ -46,36 +46,36 @@ class RouteServiceProvider extends ServiceProvider
     protected function configureRateLimiting()
     {
         RateLimiter::for('create', function (Request $request) {
-//            return [
-//                Limit::perMinutes(5, 10)->by($request->ip())->response(function () { return back()->with('error', 'Too many requests.'); }),
-//                Limit::perMinutes(5, 5)->by($request->user()?->id)->response(function () { return back()->with('error', 'Too many requests.'); })
-//            ];
+            return [
+                Limit::perMinutes(5, 10)->by($request->ip())->response(function () { return back()->with('error', 'Too many requests.'); }),
+                Limit::perMinutes(5, 5)->by($request->user()?->id)->response(function () { return back()->with('error', 'Too many requests.'); })
+            ];
         });
 
         RateLimiter::for('update', function (Request $request) {
-//            return [
-//                Limit::perMinute(15)->by($request->ip())->response(function () { return back()->with('error', 'Too many requests.'); }),
-//                Limit::perMinute(10)->by($request->user()?->id)->response(function () { return back()->with('error', 'Too many requests.'); })
-//            ];
+            return [
+                Limit::perMinute(15)->by($request->ip())->response(function () { return back()->with('error', 'Too many requests.'); }),
+                Limit::perMinute(10)->by($request->user()?->id)->response(function () { return back()->with('error', 'Too many requests.'); })
+            ];
         });
 
         RateLimiter::for('update', function (Request $request) {
-//            return [
-//                Limit::perMinute(15)->by($request->ip())->response(function () { return back()->with('error', 'Too many requests.'); }),
-//                Limit::perMinute(10)->by($request->user()?->id)->response(function () { return back()->with('error', 'Too many requests.'); })
-//            ];
+            return [
+                Limit::perMinute(15)->by($request->ip())->response(function () { return back()->with('error', 'Too many requests.'); }),
+                Limit::perMinute(10)->by($request->user()?->id)->response(function () { return back()->with('error', 'Too many requests.'); })
+            ];
         });
 
         RateLimiter::for('login', function (Request $request) {
-//            return [
-//                Limit::perMinute(rand(2, 4))->by($request->ip())->response(function () { return back()->with('error', 'Too many requests.'); })
-//            ];
+            return [
+                Limit::perMinute(rand(2, 4))->by($request->ip())->response(function () { return back()->with('error', 'Too many requests.'); })
+            ];
         });
 
         RateLimiter::for('register', function (Request $request) {
-//            return [
-//                Limit::perMinutes(7200, 10)->by($request->ip())->response(function () { return back()->with('error', 'Too many requests.'); })
-//            ];
+            return [
+                Limit::perMinutes(7200, 10)->by($request->ip())->response(function () { return back()->with('error', 'Too many requests.'); })
+            ];
         });
     }
 }
