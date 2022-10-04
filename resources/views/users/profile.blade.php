@@ -27,10 +27,6 @@
                             <td class="text-right">{{ $commentCount }}</td>
                         </tr>
                         <tr>
-                            <td>Last Post: </td>
-                            <td class="text-right">{{ $lastPost->created_at->diffForHumans() }}</td>
-                        </tr>
-                        <tr>
                             <td>Join Date: </td>
                             <td class="text-right">{{ $user->created_at->format('Y/m/d') }}</td>
                         </tr>

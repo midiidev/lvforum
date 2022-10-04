@@ -21,8 +21,7 @@ class UserController extends Controller
             'user'      => $user,
             'recent'    => Post::where('user_id', $user->id)->latest()->limit(10)->get(),
             'postCount' => Post::where('user_id', $user->id)->count(),
-            'commentCount' => Comment::where('user_id', $user->id)->count(),
-            'lastPost' => Post::where('user_id', $user->id)->latest()->get()->first()
+            'commentCount' => Comment::where('user_id', $user->id)->count()
         ]);
     }
 
