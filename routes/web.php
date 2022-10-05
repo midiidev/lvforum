@@ -64,6 +64,7 @@ Route::controller(SettingsController::class)->group(function () {
     Route::get('settings', 'view')->middleware('auth');
     Route::post('settings/change-password', 'changePassword')->middleware('auth');
     Route::post('settings/change-icon', 'changeIcon')->middleware(['auth', 'throttle:update']);
+    Route::post('settings/change-bio', 'changeBio')->middleware(['auth', 'throttle:update']);
 });
 
 // admin routes

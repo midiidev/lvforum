@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -65,5 +66,22 @@ class SettingsController extends Controller
         $user->save();
 
         return back()->with('success', 'Icon successfully updated.');
+    }
+
+    public function changeBio(Request $request)
+    {
+        if (!auth()->check()) {
+            return back()->with('error', 'You are not logged in.');
+        }
+
+        $request->validate([
+            'bio' => 'max:500'
+        ]);
+
+        $user = auth()->user();
+        $user->bio = $request->bio;
+        $user->save();
+
+        return back();
     }
 }

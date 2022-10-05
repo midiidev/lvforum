@@ -8,12 +8,36 @@
             <div class="col-span-1">
                 <div class="card bg-base-200">
                     <x-profile-icon :user="$user" class="w-full" />
-                    <div class="card-body">
-                        @if($user->bio != null)
-                            <p>{!! nl2br(htmlspecialchars($user->bio)) !!}</p>
-                        @else
-                            <p><i>This user has not set anything to display here yet...</i></p>
-                        @endif
+                    <div class="card-body" x-init x-data="{ showEdit: false }">
+                        <form method="POST" action="/settings/change-bio">
+                            @if($user->bio != null)
+                                <p x-show="!showEdit">{!! nl2br(htmlspecialchars($user->bio)) !!}</p>
+                                @if(auth()->check() && auth()->user()->id == $user->id)
+                                    <textarea x-show="showEdit" class="textarea textarea-bordered" name="bio">{{ $user->bio ?? '' }}</textarea>
+                                    <x-validation-error error="bio" />
+                                @endif
+                            @else
+                                <p x-show="!showEdit"><i>This user has not set anything to display here yet...</i></p>
+                                @if(auth()->check() && auth()->user()->id == $user->id)
+                                    <textarea x-show="showEdit" class="textarea textarea-bordered" name="bio">{{ $user->bio ?? '' }}</textarea>
+                                    <x-validation-error error="bio" />
+                                @endif
+                            @endif
+                            <div class="flex space-x-2">
+                                @if(auth()->check() && auth()->user()->id == $user->id)
+                                    <label x-show="!showEdit" @click="showEdit = !showEdit" class="cursor-pointer">
+                                        <i class="fa-solid fa-edit"></i> Edit
+                                    </label>
+                                    @csrf
+                                    <button x-show="showEdit" class="cursor-pointer">
+                                        <i class="fa-solid fa-floppy-disk"></i> Save
+                                    </button>
+                                    <label x-show="showEdit" @click="showEdit = !showEdit" class="cursor-pointer">
+                                        <i class="fa-solid fa-xmark"></i> Cancel
+                                    </label>
+                                @endif
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="mt-5 card card-body bg-base-200">
